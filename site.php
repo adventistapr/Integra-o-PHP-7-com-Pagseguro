@@ -15,9 +15,7 @@ $app->get('/', function() {
 
 	$page = new Page();
 
-	$page->setTpl("index", [
-		'products'=>Product::checkList($products)
-	]);
+	$page->setTpl("index", ['products'=>Product::checkList($products)]);
 
 });
 
