@@ -391,7 +391,9 @@
                             },
 
 
-                            complete: function(response) {}
+                            complete: function(response) {
+
+                            }
 
 
                         });
@@ -453,9 +455,6 @@
 
             });
 
-
-            console.log(params);
-
             PagSeguroDirectPayment.createCardToken({
 
                 cardNumber: params.number,
@@ -465,9 +464,16 @@
 
                 success: function(response) {
 
-                    console.log("TOKEN", response);
-                    console.log("HASH", PagSeguroDirectPayment.getSenderHash());
-                    console.log("PARAMS", params);
+                    params.token = response.card.token;
+                    params.hash = PagSeguroDirectPayment.getSenderHash();
+
+                    $.post(
+                        "/payment/credit",
+                        $.param(params),
+                        function(r) {
+                            console.log(r);
+                        }
+                    );
 
                 },
 
