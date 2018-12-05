@@ -12,19 +12,7 @@ class Address {
     private $state;
     private $country;
 
-    public function __construct(
-        string $street, 
-        string $number, 
-        string $complement, 
-        string $district, 
-        string $postalCode, 
-        string $city, 
-        string $state, 
-        string $country 
-        
-    ) 
-        
-    {
+    public function __construct(string $street, string $number, string $complement, string $district, string $postalCode, string $city, string $state, string $country) {
 
             if (!$street) {
                 throw new Expection('Informe o logradouro do endereço');
@@ -56,7 +44,6 @@ class Address {
             $this->city = $city;
             $this->state = $state;
             $this->country = $country;
-
 
     }
 
