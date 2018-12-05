@@ -54,9 +54,20 @@ class Sender {
         $documents = $sender->appendChild($documents);   
         
         $cpf = $this->cpf->getDOMElement();
-        $cpf = $dom->importeNode($cpf);
+        $cpf = $dom->importeNode($cpf, true);
+        $cpf = $documents->appendChild($cpf);
+
+        $phone = $this->phone->getDOMElement();
+        $phone = $dom->importeNode($phone, true);
+        $phone = $documents->appendChild($phone);   
         
-        return $document;
+        $hash = $dom->createElement("hash", $this->hash);
+        $hash = $sender->appendChild($hash);   
+        
+        $ip = $dom->createElement("hash", $this->ip);
+        $ip = $sender->appendChild($ip);      
+        
+        return $sender;
 
     }    
 
