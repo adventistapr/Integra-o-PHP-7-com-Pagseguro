@@ -7,7 +7,6 @@ class Holder {
     private $cpf;
     private $birthDate;
     private $phone;
-}
 
 public function __construct(string $name, Document $cpf, DateTime $birthDate, Phone $phone) {
     if (!$name){
@@ -21,33 +20,35 @@ public function __construct(string $name, Document $cpf, DateTime $birthDate, Ph
 
 }
 
-public function getDOMElement():DOMElement {
-            
-    $dom = new DOMDocument();
+    public function getDOMElement():DOMElement {
+                
+        $dom = new DOMDocument();
 
-    $holder = $dom->createElement("holder");
-    $holder = $dom->appendChild($holder);
+        $holder = $dom->createElement("holder");
+        $holder = $dom->appendChild($holder);
 
-    $name = $dom->createElement("name", $this->name);
-    $name = $holder->appendChild($name);
+        $name = $dom->createElement("name", $this->name);
+        $name = $holder->appendChild($name);
 
-    $email = $dom->createElement("email", $this->email);
-    $email = $holder->appendChild($email);   
-    
-    $birthDate = $dom->createElement("birthDate", $this->birthDate->format("d/m/Y"));
-    $birthDate = $holder->appendChild($birthDate);  
-    
-    $documents = $dom->createElement("documents");
-    $documents = $holder->appendChild($documents);   
-    
-    $cpf = $this->cpf->getDOMElement();
-    $cpf = $dom->importeNode($cpf, true);
-    $cpf = $documents->appendChild($cpf);
-
-    $phone = $this->phone->getDOMElement();
-    $phone = $dom->importeNode($phone, true);
-    $phone = $documents->appendChild($phone);   
+        $email = $dom->createElement("email", $this->email);
+        $email = $holder->appendChild($email);   
         
-    return $holder;
+        $birthDate = $dom->createElement("birthDate", $this->birthDate->format("d/m/Y"));
+        $birthDate = $holder->appendChild($birthDate);  
+        
+        $documents = $dom->createElement("documents");
+        $documents = $holder->appendChild($documents);   
+        
+        $cpf = $this->cpf->getDOMElement();
+        $cpf = $dom->importeNode($cpf, true);
+        $cpf = $documents->appendChild($cpf);
 
-} 
+        $phone = $this->phone->getDOMElement();
+        $phone = $dom->importeNode($phone, true);
+        $phone = $documents->appendChild($phone);   
+            
+        return $holder;
+
+    } 
+
+}
